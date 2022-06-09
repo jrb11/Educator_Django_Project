@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 class Educator(models.Model):
     edu_name = models.CharField(max_length=20)
-    edu_major = models.CharField(max_length=20) 
-    edu_exp = models.CharField(max_length=20)
+    edu_major = models.CharField(max_length=10) 
+    edu_exp = models.PositiveIntegerField(default=0)
     edu_course_1 = models.CharField(max_length=20)
     edu_course_2 = models.CharField(max_length=20)
 
