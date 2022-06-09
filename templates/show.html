@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Showing a Data</title>
+  <style>
+      
+    /* Create two equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+      height: 80px; /* Should be removed. Only for demonstration */
+    }
+    
+   
+    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="column"><h2>Educator-Course Data </h2></div>
+        <div class="column"><h4 align="right"> <a href="http://127.0.0.1:8000" align="center"><img src="/static/add1.png" align="center"  alt="Add Detail" style="width:50px;height:50px;"></a> </h4></div>
+    </div>
+  <!-- <h2>Educator-Course Data </h2> -->
+            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Educator Name</th>
+        <th>Educator Major</th>
+        <th>Educator Experience</th>
+        <th>Course-1</th>
+        <th>Course-2</th>
+        <!-- <th>Add</th> -->
+        <th>Update</th>
+        <th>Delete</th>
+        
+      </tr>
+    </thead>
+    {% if key1 %}
+    <tbody>
+        {% for i in key1 %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.edu_name}}</td>
+        <td>{{i.edu_major}}</td>
+        <td>{{i.edu_exp}}</td>
+        <td>{{i.edu_course_1}}</td>
+        <td>{{i.edu_course_2}}</td>
+        <!-- <td>
+            <form name="add" action="" method="post">
+            {% csrf_token %}
+                <input type="submit" value="Add">
+            </form>
+        </td> -->
+        <td>
+            <form name="update" action="{% url 'update' i.id %}" method="post">
+            {% csrf_token %}
+                <input type="submit" value="Update">
+            </form>
+        </td>
+        <td>
+            <form name="delete" action="{% url 'delete' i.id %}" method="post">
+            {% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+      </tr>
+       {% endfor %}
+    </tbody>
+   {% endif %}
+  </table>
+</div>
+
+</body>
+</html>
